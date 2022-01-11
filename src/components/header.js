@@ -14,7 +14,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import * as React from "react"
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs"
-import Logo from "./logo"
+import Logo from "./logos/logo"
 
 function Header({ siteTitle }) {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -88,12 +88,12 @@ function Header({ siteTitle }) {
             </Button>
           </Center>
           <Center>
-            <Button as="a" variant="ghost" href="#blog">
+            <Button as={Link} variant="ghost" to="/tag/blog">
               Blog
             </Button>
           </Center>
           <Center>
-            <Button as="a" variant="ghost" href="#projects">
+            <Button as={Link} variant="ghost" to="/tag/projects">
               Projects
             </Button>
           </Center>

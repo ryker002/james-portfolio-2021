@@ -1,35 +1,59 @@
 import React from "react"
-import { Box, Image, Heading, Text, Link } from "@chakra-ui/react"
+import {
+  Box,
+  Image,
+  Heading,
+  Text,
+  useColorModeValue,
+  Link,
+  Flex,
+} from "@chakra-ui/react"
+import { Link as GatsbyLink } from "gatsby"
+// import { Image as GatsbyImage } from "gatsby-image"
+import { readingTime as readingTimeHelper } from "@tryghost/helpers"
 
-export function BlogCard({ image, heading, content, link }) {
+export function BlogCard(props) {
+  const url = `/posts/${props.slug}/`
+  const readingTime = readingTimeHelper(props)
+  const color = useColorModeValue("gray.100", "gray.800")
   return (
     <Box
+      id={props.id}
       rounded={"md"}
       boxShadow={"md"}
-      background={"gray.800"}
+      background={color}
       overflow={"hidden"}
       transition={"0.3s ease-in-out"}
       _hover={{
         transform: "translateY(-10px)",
       }}
     >
-      <Image src={image} height={300} objectFit={"cover"} width={"100%"} />
+      {props.feature_image && (
+        <GatsbyLink to={url}>
+          <Image
+            // as={GatsbyImage}
+            src={props.feature_image}
+            height={300}
+            objectFit={"cover"}
+            width={"100%"}
+          />
+        </GatsbyLink>
+      )}
+
       <Box padding={3}>
         <Heading as="h2" size="md" marginBottom={1}>
-          {heading}
+          {props.title}
         </Heading>
-        <Text noOfLines={3}>{content}</Text>
-        <Link color={"primary"} fontWeight={"medium"} to={link}>
-          Read More
-        </Link>
+        <Text noOfLines={3}>{props.excerpt}</Text>
+        <Flex justifyContent={"space-between"}>
+          <Link as={GatsbyLink} color={"primary"} fontWeight={"bold"} to={url}>
+            Read More
+          </Link>
+          <Text size="sm" opacity={0.3} marginBottom={0}>
+            {readingTime}
+          </Text>
+        </Flex>
       </Box>
     </Box>
   )
-}
-
-BlogCard.defaultProps = {
-  image: "https://source.unsplash.com/random",
-  heading: "Blog Post Title",
-  content:
-    "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
 }

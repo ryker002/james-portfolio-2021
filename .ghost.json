@@ -1,0 +1,10 @@
+{
+  "development": {
+    "apiUrl": "https://blog.zechman.design",
+    "contentApiKey": "d9ddbcdf5a217900a87c624e69"
+  },
+  "production": {
+    "apiUrl": "https://blog.zechman.design",
+    "contentApiKey": "d9ddbcdf5a217900a87c624e69"
+  }
+}

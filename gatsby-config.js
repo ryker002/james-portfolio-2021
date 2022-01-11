@@ -1,9 +1,49 @@
+require("dotenv").config()
+const path = require(`path`)
+
+const config = require(`./src/utils/siteConfig`)
+const generateRSSFeed = require(`./src/utils/rss/generate-feed`)
+
+let ghostConfig
+
+try {
+  ghostConfig = require(`./.ghost`)
+} catch (e) {
+  ghostConfig = {
+    production: {
+      apiUrl: process.env.GHOST_API_URL,
+      contentApiKey: process.env.GHOST_CONTENT_API_KEY,
+    },
+  }
+} finally {
+  const { apiUrl, contentApiKey } =
+    process.env.NODE_ENV === `development`
+      ? ghostConfig.development
+      : ghostConfig.production
+
+  if (!apiUrl || !contentApiKey || contentApiKey.match(/<key>/)) {
+    throw new Error(
+      `GHOST_API_URL and GHOST_CONTENT_API_KEY are required to build. Check the README.`
+    ) // eslint-disable-line
+  }
+}
+
+if (
+  process.env.NODE_ENV === `production` &&
+  config.siteUrl === `http://localhost:8000` &&
+  !process.env.SITEURL
+) {
+  throw new Error(
+    `siteUrl can't be localhost and needs to be configured in siteConfig. Check the README.`
+  ) // eslint-disable-line
+}
+
 module.exports = {
   siteMetadata: {
-    title: `James Zechman`,
-    description: ``,
-    author: `James Zechman`,
-    siteUrl: `https://zechman.design/`,
+    title: config.siteTitleMeta,
+    description: config.siteDescriptionMeta,
+    author: config.author,
+    siteUrl: config.siteUrl,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -20,12 +60,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `james-zechman-portfolio`,
-        short_name: `james-zechman`,
+        name: config.siteTitleMeta,
+        short_name: config.shortTitle,
         start_url: `/`,
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
+        theme_color: config.themeColor,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
@@ -46,8 +86,12 @@ module.exports = {
         isUsingColorMode: true,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-source-ghost`,
+      options: {
+        apiUrl: process.env.GHOST_API_URL,
+        contentApiKey: process.env.GHOST_CONTENT_API_KEY,
+      },
+    },
   ],
 }
