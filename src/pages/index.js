@@ -1,13 +1,10 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import { Blog } from "../components/blog"
-import { Projects } from "../components/projects"
 import { graphql } from "gatsby"
+import * as React from "react"
+import { Blog } from "../components/blog"
+import Layout from "../components/layout"
+import { Projects } from "../components/projects"
 import { Resume } from "../components/resume"
+import Seo from "../components/seo"
 
 export const query = graphql`
   {
@@ -40,6 +37,7 @@ export const query = graphql`
           reading_time
           title
           slug
+          html
           tags {
             name
           }

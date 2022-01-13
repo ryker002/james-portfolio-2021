@@ -108,13 +108,6 @@ const Author = ({ data, location, pageContext }) => {
             />
           </Flex>
         </Box>
-        <SimpleGrid columns={3} mt={5}>
-          {posts.map(({ node }) => (
-            // The tag below includes the markup for each post - components/common/PostCard.js
-            <PostCard key={node.id} {...node} />
-          ))}
-        </SimpleGrid>
-        <Pagination pageContext={pageContext} />
       </Layout>
     </>
   )

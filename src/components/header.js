@@ -1,14 +1,13 @@
 import { useColorMode, useColorModeValue } from "@chakra-ui/color-mode"
 import {
   Box,
+  Button,
   Center,
   Container,
   Flex,
   Heading,
   IconButton,
   SimpleGrid,
-  Text,
-  Button,
 } from "@chakra-ui/react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
@@ -83,7 +82,7 @@ function Header({ siteTitle }) {
       >
         <SimpleGrid columns={3} row={1}>
           <Center>
-            <Button as="a" variant="ghost" href="#resume">
+            <Button as={Link} variant="ghost" to="/" href="#resume">
               Resume
             </Button>
           </Center>

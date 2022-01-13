@@ -31,7 +31,8 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.3.1",
     "sass": "^1.44.0",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "use-last-fm": "^0.6.1"
   },
   "devDependencies": {
     "prettier": "^2.4.1"

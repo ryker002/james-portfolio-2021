@@ -1,21 +1,13 @@
-import React from "react"
-import PropTypes from "prop-types"
+import { Box, Divider, Heading, SimpleGrid, Text } from "@chakra-ui/react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
-import Pagination from "../components/pagination"
+import PropTypes from "prop-types"
+import React from "react"
 import { BlogCard } from "../components/blogCard"
+import Layout from "../components/layout"
 import { MetaData } from "../components/meta"
-import {
-  Image,
-  Box,
-  Heading,
-  Container,
-  useColorModeValue,
-  SimpleGrid,
-  Divider,
-  Text,
-} from "@chakra-ui/react"
+import Pagination from "../components/pagination"
 import { ProjectCard } from "../components/projectCard"
+import { useBlogColumns, useProjectsColumns } from "../helpers/breakpoints"
 
 /**
  * Tag page (/tag/:slug)
@@ -26,6 +18,8 @@ import { ProjectCard } from "../components/projectCard"
 const Tag = ({ data, location, pageContext }) => {
   const tag = data.ghostTag
   const posts = data.allGhostPost.edges
+  const projectBreakpoint = useProjectsColumns()
+  const blogBreakpoint = useBlogColumns()
 
   const type = tag => {
     if (tag === "Projects" || tag === "wordpress" || tag === "gatsby")
@@ -45,7 +39,9 @@ const Tag = ({ data, location, pageContext }) => {
         </Box>
         <SimpleGrid
           as="section"
-          columns={type(tag.name) === "projects" ? 4 : 3}
+          columns={
+            type(tag.name) === "projects" ? projectBreakpoint : blogBreakpoint
+          }
           gap={5}
         >
           {posts.map(({ node }) => {

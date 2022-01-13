@@ -1,17 +1,11 @@
-import React from "react"
-import PropTypes from "prop-types"
+import { Box } from "@chakra-ui/react"
 import { graphql } from "gatsby"
+import PropTypes from "prop-types"
+import React from "react"
 import { Helmet } from "react-helmet"
-import Layout from "../components/layout"
-import {
-  Image,
-  Box,
-  Heading,
-  Container,
-  useColorModeValue,
-} from "@chakra-ui/react"
-import { MetaData } from "../components/meta"
 import { GhostWrapper } from "../components/ghostWrapper"
+import Layout from "../components/layout"
+import { MetaData } from "../components/meta"
 /**
  * Single page (/:slug)
  *

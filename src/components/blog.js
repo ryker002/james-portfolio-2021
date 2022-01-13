@@ -1,17 +1,12 @@
-import {
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  SimpleGrid,
-  useBreakpointValue,
-} from "@chakra-ui/react"
+import { Button, Divider, Flex, Heading, SimpleGrid } from "@chakra-ui/react"
 import { Link } from "gatsby"
 import React from "react"
+import { useBlogColumns } from "../helpers/breakpoints"
 import { BlogCard } from "./blogCard"
 
 export function Blog({ posts }) {
-  const breakpoint = useBreakpointValue({ base: 1, md: 3, sm: 2 })
+  const breakpoint = useBlogColumns()
+
   return (
     <>
       <Heading as="h2" id="#blog">

@@ -1,5 +1,6 @@
 import {
   Box,
+  Center,
   Divider,
   Flex,
   Grid,
@@ -8,45 +9,70 @@ import {
   List,
   ListIcon,
   ListItem,
-  Text,
-  useColorModeValue,
   SimpleGrid,
+  Text,
   Tooltip,
-  Center,
+  useBreakpointValue,
+  useColorModeValue,
 } from "@chakra-ui/react"
 import React from "react"
-import { AiFillHtml5, AiFillCustomerService } from "react-icons/ai"
+import { AiFillCustomerService, AiFillHtml5 } from "react-icons/ai"
 import { BsWordpress } from "react-icons/bs"
+import { DiCss3, DiGitBranch } from "react-icons/di"
 import { GrGatsbyjs, GrReactjs } from "react-icons/gr"
 import {
   MdCheckCircle,
   MdManageAccounts,
   MdOutlineAttachMoney,
 } from "react-icons/md"
-import { DiCss3, DiGitBranch } from "react-icons/di"
-import { SiPhp, SiNextdotjs, SiNodedotjs, SiJavascript } from "react-icons/si"
+import { SiJavascript, SiNextdotjs, SiNodedotjs, SiPhp } from "react-icons/si"
 
 export function Resume() {
+  // const breakpoint = useBreakpointValue({ base: 1, md: 4, sm: 2 })
   const color = useColorModeValue("gray.100", "gray.800")
+  // Setup Grid Responsiveness
+  const breakPointColumns = useBreakpointValue({
+    base: {
+      gridAutoRows: "1fr",
+      templateColumns: "repeat(1, 1fr)",
+    },
+    sm: {
+      templateRows: "repeat(3, 1fr)",
+      templateColumns: "repeat(2, 1fr)",
+    },
+    md: {
+      templateRows: "repeat(3, 1fr)",
+      templateColumns: "repeat(4, 1fr)",
+    },
+  })
+  const jobBreakpointColumn = useBreakpointValue({
+    base: {
+      colSpan: 2,
+      rowSpan: 2,
+    },
+    md: {
+      colSpan: 2,
+      rowSpan: 2,
+    },
+  })
+  const jobSkills = useBreakpointValue({
+    base: "relative",
+    md: "absolute",
+  })
   const defaultBoxProps = {
     borderRadius: "md",
     background: color,
     boxShadow: "md",
     padding: 5,
   }
+
   return (
     <>
       <Heading as="h2" id="#blog">
         Resume
       </Heading>
       <Divider />
-      <Grid
-        templateRows="repeat(3, 1fr)"
-        templateColumns="repeat(4, 1fr)"
-        gridGap={5}
-        marginBottom={5}
-        marginTop={5}
-      >
+      <Grid {...breakPointColumns} gridGap={5} marginBottom={5} marginTop={5}>
         <GridItem colSpan={2} rowSpan={3} {...defaultBoxProps}>
           <Heading as="h3">Education</Heading>
           <Divider mb={5} />
@@ -205,23 +231,33 @@ export function Resume() {
             </List>
           </Box>
         </GridItem>
-        <GridItem colSpan={1} rowSpan={2} {...defaultBoxProps} id="muv">
-          <Heading as="h4" size="sm" marginBottom={0} color={"primary"}>
-            müv
-          </Heading>
-          <Flex justifyContent={"space-between"}>
-            <Text fontSize={"sm"} opacity={0.8}>
-              Lead Developer
-            </Text>
-            <Text
-              fontSize={"sm"}
-              color="primary"
-              fontWeight="medium"
-              opacity={1}
-            >
-              Sep 2019
-            </Text>
-          </Flex>
+        <GridItem
+          {...jobBreakpointColumn}
+          {...defaultBoxProps}
+          id="muv"
+          position="relative"
+          display={"flex"}
+          flexWrap={"wrap"}
+          alignContent={"flex-start"}
+        >
+          <Box width={"100%"}>
+            <Heading as="h4" size="sm" marginBottom={0} color={"primary"}>
+              müv
+            </Heading>
+            <Flex justifyContent={"space-between"}>
+              <Text fontSize={"sm"} opacity={0.8}>
+                Lead Developer
+              </Text>
+              <Text
+                fontSize={"sm"}
+                color="primary"
+                fontWeight="medium"
+                opacity={1}
+              >
+                Sep 2019
+              </Text>
+            </Flex>
+          </Box>
           <Text fontSize={"sm"} fontWeight={500} marginBottom={0}>
             Responsibilities
           </Text>
@@ -232,54 +268,38 @@ export function Resume() {
             marginTop={2}
             marginBottom={2}
           >
-            <ListItem
-              fontSize={"xs"}
-              alignItems={"center"}
-              display={"flex"}
-              mb={0}
-            >
+            <ListItem alignItems={"center"} display={"flex"} mb={0}>
               <ListIcon as={MdCheckCircle} color="primary" />
               Lead in the creation of the developmental process.
             </ListItem>
-            <ListItem
-              fontSize={"xs"}
-              alignItems={"center"}
-              display={"flex"}
-              mb={0}
-            >
+            <ListItem alignItems={"center"} display={"flex"} mb={0}>
               <ListIcon as={MdCheckCircle} color="primary" />
               Transfer designed websites into progressive and responsive web
               applications.
             </ListItem>
-            <ListItem
-              fontSize={"xs"}
-              alignItems={"center"}
-              display={"flex"}
-              mb={0}
-            >
+            <ListItem alignItems={"center"} display={"flex"} mb={0}>
               <ListIcon as={MdCheckCircle} color="primary" />
               Develop & Setup Backend services for the client.
             </ListItem>
-            <ListItem
-              fontSize={"xs"}
-              alignItems={"center"}
-              display={"flex"}
-              mb={0}
-            >
+            <ListItem alignItems={"center"} display={"flex"} mb={0}>
               <ListIcon as={MdCheckCircle} color="primary" />
               Continuously learn in order to create growth.
             </ListItem>
-            <ListItem
-              fontSize={"xs"}
-              alignItems={"center"}
-              display={"flex"}
-              mb={0}
-            >
+            <ListItem alignItems={"center"} display={"flex"} mb={0}>
               <ListIcon as={MdCheckCircle} color="primary" />
               Troubleshoot & Fix problems that occur with websites.
             </ListItem>
           </List>
-          <Flex justifyContent={"space-between"}>
+          <Flex
+            justifyContent={"space-between"}
+            width="100%"
+            alignSelf={"flex-end"}
+            position={jobSkills}
+            bottom={5}
+            left={0}
+            right={0}
+            padding={5}
+          >
             <Text fontSize={"sm"} fontWeight={500} marginBottom={0}>
               Skills
             </Text>
@@ -338,76 +358,6 @@ export function Resume() {
               <Tooltip label="Git" hasArrow fontSize="md">
                 <span>
                   <DiGitBranch />
-                </span>
-              </Tooltip>
-            </SimpleGrid>
-          </Flex>
-        </GridItem>
-        <GridItem colSpan={1} rowSpan={2} {...defaultBoxProps} id="muv">
-          <Heading as="h4" size="sm" marginBottom={0} color={"primary"}>
-            Jockey
-          </Heading>
-          <Flex justifyContent={"space-between"}>
-            <Text fontSize={"sm"} opacity={0.8}>
-              Key Holder
-            </Text>
-            <Text fontSize={"sm"} opacity={0.8}>
-              Sep 2015 - May 2020
-            </Text>
-          </Flex>
-          <Text fontSize={"sm"} fontWeight={500} marginBottom={0}>
-            Responsibilities
-          </Text>
-          <List
-            spacing={0}
-            size="sm"
-            marginLeft={0}
-            marginTop={2}
-            marginBottom={2}
-          >
-            <ListItem
-              fontSize={"xs"}
-              alignItems={"center"}
-              display={"flex"}
-              mb={0}
-            >
-              <ListIcon as={MdCheckCircle} color="primary" />
-              Manage a team and ensure daily tasks are being completed.
-            </ListItem>
-            <ListItem
-              fontSize={"xs"}
-              alignItems={"center"}
-              display={"flex"}
-              mb={0}
-            >
-              <ListIcon as={MdCheckCircle} color="primary" />
-              Sell & Upsell product to customers.
-            </ListItem>
-          </List>
-          <Flex justifyContent={"space-between"}>
-            <Text fontSize={"sm"} fontWeight={500} marginBottom={0}>
-              Skills
-            </Text>
-            <SimpleGrid
-              marginBottom={0}
-              gridGap={3}
-              columns={6}
-              rows={2}
-              justifyContent={"flex-end"}
-            >
-              <Tooltip label="Customer Service" hasArrow fontSize="md">
-                <span>
-                  <AiFillCustomerService />
-                </span>
-              </Tooltip>
-              <Tooltip label="Management" hasArrow fontSize="md">
-                <span>
-                  <MdManageAccounts />
-                </span>
-              </Tooltip>
-              <Tooltip label="Sales" hasArrow fontSize="md">
-                <span>
-                  <MdOutlineAttachMoney />
                 </span>
               </Tooltip>
             </SimpleGrid>

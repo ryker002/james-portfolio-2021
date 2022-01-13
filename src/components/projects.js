@@ -1,17 +1,11 @@
-import {
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  SimpleGrid,
-  useBreakpointValue,
-} from "@chakra-ui/react"
+import { Button, Divider, Flex, Heading, SimpleGrid } from "@chakra-ui/react"
 import { Link } from "gatsby"
 import React from "react"
+import { useProjectsColumns } from "../helpers/breakpoints"
 import { ProjectCard } from "./projectCard"
 
 export function Projects({ posts }) {
-  const breakpoint = useBreakpointValue({ base: 1, md: 4, sm: 2 })
+  const breakpoint = useProjectsColumns()
   return (
     <>
       <Heading as="h2" id="projects">

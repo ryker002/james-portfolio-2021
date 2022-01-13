@@ -59,7 +59,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Load templates
   const tagsTemplate = path.resolve(`./src/templates/tag.js`)
-  const authorTemplate = path.resolve(`./src/templates/author.js`)
   const pageTemplate = path.resolve(`./src/templates/page.js`)
   const postTemplate = path.resolve(`./src/templates/post.js`)
 
@@ -79,29 +78,6 @@ exports.createPages = async ({ graphql, actions }) => {
       items: items,
       itemsPerPage: 12,
       component: tagsTemplate,
-      pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? url : `${url}/page`),
-      context: {
-        slug: node.slug,
-      },
-    })
-  })
-
-  // Create author pages
-  authors.forEach(({ node }) => {
-    const totalPosts = node.postCount !== null ? node.postCount : 0
-
-    // This part here defines, that our author pages will use
-    // a `/author/:slug/` permalink.
-    const url = `/author/${node.slug}`
-
-    const items = Array.from({ length: totalPosts })
-
-    // Create pagination
-    paginate({
-      createPage,
-      items: items,
-      itemsPerPage: 12,
-      component: authorTemplate,
       pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? url : `${url}/page`),
       context: {
         slug: node.slug,
