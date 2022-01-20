@@ -13,7 +13,6 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import * as React from "react"
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs"
-import { GridBackground } from "./gridBackground"
 import Logo from "./logos/logo"
 
 function Header({ siteTitle }) {
@@ -35,7 +34,7 @@ function Header({ siteTitle }) {
         justifyContent={"flex-start"}
         marginBottom={5}
       >
-        <GridBackground />
+        {/* <GridBackground /> */}
         <IconButton
           colorScheme="transparent"
           onClick={changeTheme}
@@ -57,7 +56,6 @@ function Header({ siteTitle }) {
               <Heading
                 as="h1"
                 margin={0}
-                color={"white"}
                 size="2xl"
                 color="transparent"
                 css={`

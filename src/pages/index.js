@@ -49,12 +49,13 @@ export const query = graphql`
 
 function IndexPage({ data }) {
   const { posts, projects } = data
+  const hasPosts = posts.edges.length > 0
   return (
     <Layout>
       <Seo title="Home" />
       <Projects posts={projects} />
       <Resume />
-      <Blog posts={posts} />
+      {hasPosts && <Blog posts={posts} />}
     </Layout>
   )
 }

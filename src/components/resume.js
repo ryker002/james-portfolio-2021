@@ -25,7 +25,13 @@ import {
   MdManageAccounts,
   MdOutlineAttachMoney,
 } from "react-icons/md"
-import { SiJavascript, SiNextdotjs, SiNodedotjs, SiPhp } from "react-icons/si"
+import {
+  SiJavascript,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPhp,
+  SiFlutter,
+} from "react-icons/si"
 
 export function Resume() {
   // const breakpoint = useBreakpointValue({ base: 1, md: 4, sm: 2 })
@@ -360,6 +366,11 @@ export function Resume() {
                   <DiGitBranch />
                 </span>
               </Tooltip>
+              <Tooltip label="Flutter" hasArrow fontSize="md">
+                <span>
+                  <SiFlutter />
+                </span>
+              </Tooltip>
             </SimpleGrid>
           </Flex>
         </GridItem>
@@ -423,6 +434,11 @@ export function Resume() {
             <Tooltip label="Git" hasArrow fontSize="md">
               <Center as="span">
                 <DiGitBranch size="2em" />
+              </Center>
+            </Tooltip>
+            <Tooltip label="Flutter" hasArrow fontSize="md">
+              <Center as="span">
+                <SiFlutter size="2em" />
               </Center>
             </Tooltip>
             <Tooltip label="Customer Service" hasArrow fontSize="md">

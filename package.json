@@ -1,11 +1,12 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "james-zechman-portfolio",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Portfolio site for James Zechman",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "James Zechman <james@zechman.design>",
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^2.0.2",
+    "@chakra-ui/icons": "^1.1.1",
     "@chakra-ui/react": "^1.7.2",
     "@chakra-ui/theme": "^1.12.1",
     "@chakra-ui/theme-tools": "^1.3.1",
