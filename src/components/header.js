@@ -80,7 +80,7 @@ function Header({ siteTitle }) {
         transform={"translateY(-100%)"}
         background={navLinks}
       >
-        <SimpleGrid columns={3} row={1}>
+        <SimpleGrid columns={4} row={1}>
           <Center>
             <Button as={Link} variant="ghost" to="/" href="#resume">
               Resume
@@ -94,6 +94,11 @@ function Header({ siteTitle }) {
           <Center>
             <Button as={Link} variant="ghost" to="/tag/projects">
               Projects
+            </Button>
+          </Center>
+          <Center>
+            <Button as={Link} variant="ghost" to="/contact">
+              Contact
             </Button>
           </Center>
         </SimpleGrid>

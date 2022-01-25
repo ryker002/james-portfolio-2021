@@ -16,8 +16,7 @@ import { IoMdMusicalNotes } from "react-icons/io"
 import { useLastFM } from "use-last-fm"
 
 const CurrentlyPlaying = () => {
-  const lastFM = useLastFM("gryovex", "58a954291776dad9093a542f7df72949")
-  console.log(lastFM)
+  const lastFM = useLastFM("gryovex", process.env.GATSBY_LASTFM_API)
 
   if (lastFM.status === "error") {
     return null

@@ -32,6 +32,7 @@ import {
   SiPhp,
   SiFlutter,
 } from "react-icons/si"
+import { Link } from "gatsby"
 
 export function Resume() {
   // const breakpoint = useBreakpointValue({ base: 1, md: 4, sm: 2 })
@@ -248,7 +249,9 @@ export function Resume() {
         >
           <Box width={"100%"}>
             <Heading as="h4" size="sm" marginBottom={0} color={"primary"}>
-              müv
+              <a href="https://www.muvideas.com" target="_blank">
+                müv
+              </a>
             </Heading>
             <Flex justifyContent={"space-between"}>
               <Text fontSize={"sm"} opacity={0.8}>
@@ -263,6 +266,9 @@ export function Resume() {
                 Sep 2019
               </Text>
             </Flex>
+            <Text fontSize={"xs"} as={Link} to="/tag/muv" opacity={0.8}>
+              See Projects
+            </Text>
           </Box>
           <Text fontSize={"sm"} fontWeight={500} marginBottom={0}>
             Responsibilities

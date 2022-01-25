@@ -1,12 +1,21 @@
-import { Box, Divider, Heading, SimpleGrid, Text } from "@chakra-ui/react"
-import { graphql } from "gatsby"
+import {
+  Box,
+  Heading,
+  SimpleGrid,
+  Text,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+} from "@chakra-ui/react"
+import { graphql, Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import { BlogCard } from "../components/blogCard"
 import Layout from "../components/layout"
 import { MetaData } from "../components/meta"
 import Pagination from "../components/pagination"
-import { ProjectCard } from "../components/projectCard"
+import { Projects } from "../components/projects/projects"
 import { useBlogColumns, useProjectsColumns } from "../helpers/breakpoints"
 
 /**
@@ -17,12 +26,18 @@ import { useBlogColumns, useProjectsColumns } from "../helpers/breakpoints"
  */
 const Tag = ({ data, location, pageContext }) => {
   const tag = data.ghostTag
-  const posts = data.allGhostPost.edges
+  const posts = data.allGhostPost
   const projectBreakpoint = useProjectsColumns()
   const blogBreakpoint = useBlogColumns()
 
   const type = tag => {
-    if (tag === "Projects" || tag === "wordpress" || tag === "gatsby")
+    if (
+      tag === "Projects" ||
+      tag === "wordpress" ||
+      tag === "gatsby" ||
+      tag === "muv" ||
+      tag === "zechman-design"
+    )
       return "projects"
     return "blog"
   }
@@ -35,22 +50,22 @@ const Tag = ({ data, location, pageContext }) => {
             {tag.name}
           </Heading>
           {tag.description ? <Text>{tag.description}</Text> : null}
-          <Divider />
         </Box>
-        <SimpleGrid
-          as="section"
-          columns={
-            type(tag.name) === "projects" ? projectBreakpoint : blogBreakpoint
-          }
-          gap={5}
-        >
-          {posts.map(({ node }) => {
-            if (type(tag.name) === "projects")
-              return <ProjectCard key={node.ghostId} {...node} />
-            // The tag below includes the markup for each post - components/common/PostCard.js
-            return <BlogCard key={node.ghostId} {...node} />
-          })}
-        </SimpleGrid>
+        {type(tag.name) === "projects" ? (
+          <Projects posts={posts} location={location} />
+        ) : (
+          <SimpleGrid
+            as="section"
+            columns={
+              type(tag.name) === "projects" ? projectBreakpoint : blogBreakpoint
+            }
+            gap={5}
+          >
+            {posts?.edges.map(({ node }) => {
+              return <BlogCard key={node.ghostId} {...node} />
+            })}
+          </SimpleGrid>
+        )}
         <Pagination pageContext={pageContext} />
       </Layout>
     </>

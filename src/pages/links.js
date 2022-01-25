@@ -1,8 +1,18 @@
-import { Box, Container, Grid, GridItem } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Grid,
+  GridItem,
+  Icon,
+} from "@chakra-ui/react"
 import { Link } from "gatsby"
 import React from "react"
 import Logo from "../components/logos/logo"
 import Seo from "../components/seo"
+import { ImLinkedin2, ImGithub } from "react-icons/im"
+import { LogoIcon } from "../components/logos"
 
 function LinksPage({ data }) {
   return (
@@ -21,8 +31,32 @@ function LinksPage({ data }) {
                 <Logo />
               </Link>
             </GridItem>
-            <GridItem alignItems={"center"} justifyContent={"center"}>
-              Hello
+            <GridItem
+              display="flex"
+              flexDirection="column"
+              gridGap={4}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Button as={Link} to="/" leftIcon={<Icon as={LogoIcon} />}>
+                Website
+              </Button>
+              <Button
+                as="a"
+                href="https://www.linkedin.com/in/jlewandowski1/"
+                target="_blank"
+                leftIcon={<ImLinkedin2 />}
+              >
+                LinkedIn
+              </Button>
+              <Button
+                as={"a"}
+                href="https://github.com/ryker002"
+                target="_blank"
+                leftIcon={<ImGithub />}
+              >
+                Github
+              </Button>
             </GridItem>
           </Grid>
         </Container>

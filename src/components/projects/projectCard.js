@@ -1,9 +1,10 @@
 import { Box, Flex, Heading, Image, Tooltip, VStack } from "@chakra-ui/react"
+import { StaticImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
 import { AiFillHtml5 } from "react-icons/ai"
 import { BsWordpress } from "react-icons/bs"
 import { GrGatsbyjs, GrReactjs } from "react-icons/gr"
-import { LogoIcon, MuvIcon } from "./logos"
+import { LogoIcon, MuvIcon } from "../logos"
 
 export function ProjectCard(props) {
   const [hover, setHover] = useState(false)
@@ -102,6 +103,7 @@ export function ProjectCard(props) {
               padding={5}
               fontSize={14}
               lineHeight={1.2}
+              color={"white"}
               dangerouslySetInnerHTML={{ __html: props.html }}
             />
             <Flex
@@ -122,6 +124,7 @@ export function ProjectCard(props) {
           </VStack>
         )}
         <Image
+          // as={StaticImage}
           src={props.feature_image}
           height={"100%"}
           objectFit={"cover"}
