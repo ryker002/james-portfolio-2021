@@ -36,10 +36,12 @@ const Post = ({ data, location }) => {
                   boxShadow="md"
                   maxH={800}
                   width="100%"
+                  objectFit={"cover"}
+                  objectPosition={"top"}
                 />
               </Box>
             ) : null}
-            <GhostWrapper {...post} />
+            <GhostWrapper {...post} location={location} />
           </Container>
         </Layout>
       </>

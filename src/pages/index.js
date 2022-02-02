@@ -1,9 +1,9 @@
 import { graphql } from "gatsby"
 import * as React from "react"
-import { Blog } from "../components/blog"
+import { Blog } from "../components/blog/blog"
 import Layout from "../components/layout"
 import { Projects } from "../components/projects/projects"
-import { Resume } from "../components/resume"
+import { Resume } from "../components/sections/resume"
 import Seo from "../components/seo"
 
 export const query = graphql`
@@ -15,9 +15,6 @@ export const query = graphql`
       edges {
         node {
           feature_image
-          fields {
-            featureImageSharp
-          }
           excerpt
           ghostId
           id
@@ -34,9 +31,6 @@ export const query = graphql`
       edges {
         node {
           feature_image
-          fields {
-            featureImageSharp
-          }
           excerpt
           ghostId
           id

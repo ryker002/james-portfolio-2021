@@ -67,7 +67,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         theme_color: config.themeColor,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.svg`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-sass`,
@@ -94,31 +94,18 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-ghost-images`,
+      resolve: "gatsby-plugin-firebase",
       options: {
-        // An array of node types and image fields per node
-        // Image fields must contain a valid absolute path to the image to be downloaded
-        lookup: [
-          {
-            type: `GhostPost`,
-            imgTags: [`feature_image`],
-          },
-          {
-            type: `GhostPage`,
-            imgTags: [`feature_image`],
-          },
-          {
-            type: `GhostSettings`,
-            imgTags: [`cover_image`],
-          },
-        ],
-        // Additional condition to exclude nodes
-        // Takes precedence over lookup
-        exclude: node => node.ghostId === undefined,
-        // Additional information messages useful for debugging
-        verbose: true,
-        // Option to disable the module (default: false)
-        disable: false,
+        credentials: {
+          apiKey: process.env.FIREBASE_APIKEY,
+          authDomain: process.env.FIREBASE_AUTHDOMAIN,
+          databaseURL: process.env.FIREBASE_DATABASEURL,
+          projectId: process.env.FIREBASE_PROJECTID,
+          storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+          messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
+          appId: process.env.FIREBASE_APPID,
+          measurementId: process.env.FIREBASE_MEASUREMENTID,
+        },
       },
     },
   ],

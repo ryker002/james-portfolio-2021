@@ -1,5 +1,23 @@
-import { Box, Heading, useColorModeValue } from "@chakra-ui/react"
+import {
+  Box,
+  Heading,
+  useColorModeValue,
+  Text,
+  Link as Href,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+} from "@chakra-ui/react"
+import { Link } from "gatsby"
 import React from "react"
+import ReactHtmlParser, { convertNodeToElement } from "react-html-parser"
+import _ from "lodash"
+import ReactMarkdown from "react-markdown"
 
 export function GhostWrapper(props) {
   const pre = useColorModeValue("gray.100", "gray.800")
@@ -119,8 +137,99 @@ export function GhostWrapper(props) {
             borderRadius: "md",
           },
         }}
-        dangerouslySetInnerHTML={{ __html: props.html }}
-      />
+      >
+        {ReactHtmlParser(props.html, {
+          transform: (node, index) => {
+            if (_.includes(["h1", "h2", "h3", "h4", "h5", "h6"], node.name)) {
+              const size = tag => {
+                switch (tag) {
+                  case "h1":
+                    return "2xl"
+                    break
+                  case "h2":
+                    return "1xl"
+                    break
+                  case "h3":
+                    return "xl"
+                    break
+                  case "h4":
+                    return "lg"
+                    break
+                  case "h5":
+                    return "md"
+                    break
+                  case "h6":
+                    return "sm"
+                    break
+                  default:
+                    return "sm"
+                }
+              }
+
+              return (
+                <Heading
+                  as={node.name}
+                  size={size(node.name)}
+                  textAlign={"center"}
+                  margin={"1em 0"}
+                  {...node.attribs}
+                >
+                  {node?.children.map(heading => {
+                    if (heading.children) {
+                      return heading.children.map(e => {
+                        if (e.parent) {
+                          return (
+                            <Href
+                              color="primary"
+                              as={e.parent.name}
+                              {...e.parent.attribs}
+                            >
+                              {e.data}
+                            </Href>
+                          )
+                        }
+                      })
+                    }
+                    return heading.data
+                  })}
+                </Heading>
+              )
+            }
+            if (_.includes(["table"], node.name)) {
+              console.log(node)
+              {
+                /* return (
+                <Table variant={"simple"}>
+                  {node.children.map(e => {
+                    if ((e.data = "/n")) return null
+                    if ((e.name = "thead"))
+                      return (
+                        <Thead>
+                          {e.children.map(tr => {
+                            if ((tr.data = "/n")) return null
+                            return (
+                              <Tr>
+                                {tr.children.map(th => {
+                                  if ((th.data = "/n")) return null
+                                  return (
+                                    <Th>
+                                      {th.children.map(text => text.data)}
+                                    </Th>
+                                  )
+                                })}
+                              </Tr>
+                            )
+                          })}
+                        </Thead>
+                      )
+                  })}
+                </Table>
+              ) */
+              }
+            }
+          },
+        })}
+      </Box>
     </Box>
   )
 }

@@ -1,7 +1,7 @@
 import { Button, Divider, Flex, Heading, SimpleGrid } from "@chakra-ui/react"
 import { Link } from "gatsby"
 import React from "react"
-import { useBlogColumns } from "../helpers/breakpoints"
+import { useBlogColumns } from "../../helpers/breakpoints"
 import { BlogCard } from "./blogCard"
 
 export function Blog({ posts }) {

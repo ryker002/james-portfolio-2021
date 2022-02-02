@@ -14,6 +14,7 @@ import PropTypes from "prop-types"
 import * as React from "react"
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs"
 import Logo from "./logos/logo"
+import { LoginButton } from "./user/userButton"
 
 function Header({ siteTitle }) {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -34,21 +35,20 @@ function Header({ siteTitle }) {
         justifyContent={"flex-start"}
         marginBottom={5}
       >
-        {/* <GridBackground /> */}
-        <IconButton
-          colorScheme="transparent"
-          onClick={changeTheme}
-          position={"absolute"}
-          top={5}
-          right={5}
-          icon={
-            colorMode === "light" ? (
-              <BsFillSunFill color="#fff" size="22" />
-            ) : (
-              <BsFillMoonFill color="#fff" size="22" />
-            )
-          }
-        />
+        <Flex position={"absolute"} top={5} right={5}>
+          <LoginButton />
+          <IconButton
+            colorScheme="transparent"
+            onClick={changeTheme}
+            icon={
+              colorMode === "light" ? (
+                <BsFillSunFill color="#fff" size="22" />
+              ) : (
+                <BsFillMoonFill color="#fff" size="22" />
+              )
+            }
+          />
+        </Flex>
         <Container maxW="container.xl">
           <Link to="/">
             <Flex alignItems={"center"} gridGap={3}>

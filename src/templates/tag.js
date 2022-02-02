@@ -1,17 +1,8 @@
-import {
-  Box,
-  Heading,
-  SimpleGrid,
-  Text,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-} from "@chakra-ui/react"
-import { graphql, Link } from "gatsby"
+import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react"
+import { graphql } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-import { BlogCard } from "../components/blogCard"
+import { BlogCard } from "../components/blog/blogCard"
 import Layout from "../components/layout"
 import { MetaData } from "../components/meta"
 import Pagination from "../components/pagination"

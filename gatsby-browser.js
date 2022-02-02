@@ -4,6 +4,10 @@
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
 
+require("firebase/auth")
+require("firebase/firestore")
+require("firebase/functions")
+
 // You can delete this file if you're not using it
 /* eslint-disable */
 /**

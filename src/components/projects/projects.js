@@ -1,21 +1,13 @@
-import {
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  useColorModeValue,
-} from "@chakra-ui/react"
+import { Button, Divider, Flex, Heading } from "@chakra-ui/react"
 import { Link } from "gatsby"
-import React, { useEffect, useState } from "react"
-import { useProjectsColumns } from "../../helpers/breakpoints"
-import { ProjectsGrid } from "./projectsGrid"
-import { ProjectsContext, ProjectsWrapper } from "./projectContext"
+import React, { useState } from "react"
+import { ProjectsContext } from "./projectContext"
 import { ProjectFilters } from "./projectFilters"
+import { ProjectsGrid } from "./projectsGrid"
 
 export function Projects(props) {
   const [filter, setFilter] = useState()
   const { posts } = props
-  console.log(props.location)
   if (posts)
     return (
       <>
